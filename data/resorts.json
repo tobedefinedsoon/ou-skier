@@ -1,0 +1,142 @@
+[
+  {
+    "id": "zermatt",
+    "name": "Zermatt",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.0207,
+      "lon": 7.7491
+    },
+    "elevation": 1620,
+    "pisteInfo": {
+      "total": 359,
+      "open": 315
+    }
+  },
+  {
+    "id": "verbier",
+    "name": "Verbier",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.1144,
+      "lon": 7.2278
+    },
+    "elevation": 1500,
+    "pisteInfo": {
+      "total": 410,
+      "open": 345
+    }
+  },
+  {
+    "id": "saas-fee",
+    "name": "Saas-Fée",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.1286,
+      "lon": 7.9467
+    },
+    "elevation": 1800,
+    "pisteInfo": {
+      "total": 100,
+      "open": 85
+    }
+  },
+  {
+    "id": "crans-montana",
+    "name": "Crans-Montana",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.3818,
+      "lon": 7.4905
+    },
+    "elevation": 1500,
+    "pisteInfo": {
+      "total": 140,
+      "open": 120
+    }
+  },
+  {
+    "id": "villars",
+    "name": "Villars-sur-Ollon",
+    "region": "Vaud",
+    "coordinates": {
+      "lat": 46.3135,
+      "lon": 7.1983
+    },
+    "elevation": 1300,
+    "pisteInfo": {
+      "total": 100,
+      "open": 75
+    }
+  },
+  {
+    "id": "les-diablerets",
+    "name": "Les Diablerets",
+    "region": "Vaud",
+    "coordinates": {
+      "lat": 46.3433,
+      "lon": 7.1718
+    },
+    "elevation": 1200,
+    "pisteInfo": {
+      "total": 77,
+      "open": 60
+    }
+  },
+  {
+    "id": "leysin",
+    "name": "Leysin",
+    "region": "Vaud",
+    "coordinates": {
+      "lat": 46.3632,
+      "lon": 7.2455
+    },
+    "elevation": 1400,
+    "pisteInfo": {
+      "total": 90,
+      "open": 72
+    }
+  },
+  {
+    "id": "grindelwald",
+    "name": "Grindelwald",
+    "region": "Bern",
+    "coordinates": {
+      "lat": 46.6199,
+      "lon": 8.3315
+    },
+    "elevation": 1034,
+    "pisteInfo": {
+      "total": 100,
+      "open": 80
+    }
+  },
+  {
+    "id": "wengen",
+    "name": "Wengen",
+    "region": "Bern",
+    "coordinates": {
+      "lat": 46.6064,
+      "lon": 8.3267
+    },
+    "elevation": 1274,
+    "pisteInfo": {
+      "total": 62,
+      "open": 50
+    }
+  },
+  {
+    "id": "adelboden",
+    "name": "Adelboden",
+    "region": "Bern",
+    "coordinates": {
+      "lat": 46.4904,
+      "lon": 7.6192
+    },
+    "elevation": 1355,
+    "pisteInfo": {
+      "total": 203,
+      "open": 165
+    }
+  }
+]
