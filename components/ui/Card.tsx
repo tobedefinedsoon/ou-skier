@@ -7,6 +7,7 @@ interface CardProps {
   className?: string
   onClick?: () => void
   as?: 'div' | 'article' | 'section'
+  style?: React.CSSProperties
 }
 
 /**
@@ -17,6 +18,7 @@ export function Card({
   className = '',
   onClick,
   as: Component = 'div',
+  style,
 }: CardProps) {
   return (
     <Component
@@ -28,6 +30,7 @@ export function Card({
         padding: 'var(--spacing-lg)',
         boxShadow: 'var(--shadow-sm)',
         transition: 'box-shadow var(--transition-base)',
+        ...style,
       }}
       onMouseEnter={(e) => {
         if (e.currentTarget instanceof HTMLElement) {
