@@ -7,10 +7,11 @@ const HourlyDataSchema = z.object({
   snowfall: z.array(z.number()),
   snow_depth: z.array(z.number()),
   windspeed_10m: z.array(z.number()),
-  windgusts_10m: z.array(z.number()),
-  apparent_temperature: z.array(z.number()),
-  direct_radiation: z.array(z.number()),
-})
+  // Optional fields that may be returned by the API
+  windgusts_10m: z.array(z.number()).optional(),
+  apparent_temperature: z.array(z.number()).optional(),
+  direct_radiation: z.array(z.number()).optional(),
+}).passthrough() // Allow additional fields from API
 
 // MeteoSwiss API response schema for daily data
 const DailyDataSchema = z.object({
@@ -19,7 +20,7 @@ const DailyDataSchema = z.object({
   sunshine_duration: z.array(z.number()),
   temperature_2m_max: z.array(z.number()),
   temperature_2m_min: z.array(z.number()),
-})
+}).passthrough() // Allow additional fields from API
 
 // Complete MeteoSwiss API response
 export const MeteoSwissResponseSchema = z.object({
@@ -30,7 +31,7 @@ export const MeteoSwissResponseSchema = z.object({
   hourly: HourlyDataSchema,
   daily: DailyDataSchema,
   generationtime_ms: z.number().optional(),
-})
+}).passthrough() // Allow additional fields from API
 
 export type MeteoSwissResponse = z.infer<typeof MeteoSwissResponseSchema>
 

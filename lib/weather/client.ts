@@ -50,26 +50,37 @@ export async function fetchWeatherForResorts(
     const data = await response.json()
 
     // Validate response structure
-    // Note: For multiple locations, API returns an array of results
-    if (Array.isArray(data.results)) {
-      // Validate each result
-      const validated = data.results.map((result: unknown) => {
-        const validationResult = MeteoSwissResponseSchema.safeParse(result)
-        if (!validationResult.success) {
-          console.error('Invalid weather data:', validationResult.error)
-          throw new Error('Invalid weather data format from MeteoSwiss API')
-        }
-        return validationResult.data
-      })
-      return validated
+    // Open-Meteo returns different structures based on input:
+    // - Single location: returns object with latitude, longitude, hourly, daily, etc.
+    // - Multiple locations: returns array of objects
+    // - Some versions wrap multiple locations in "results" array
+    let results: unknown[] = []
+
+    if (Array.isArray(data)) {
+      // Direct array response (multiple locations)
+      results = data
+    } else if (data.results && Array.isArray(data.results)) {
+      // Wrapped in results object (some API versions)
+      results = data.results
+    } else if (data.latitude !== undefined && data.longitude !== undefined) {
+      // Single location response
+      results = [data]
     } else {
-      // Single location response (shouldn't happen with multiple coordinates, but handle it)
-      const validationResult = MeteoSwissResponseSchema.safeParse(data)
+      console.error('Unexpected response structure:', JSON.stringify(data, null, 2))
+      throw new Error('Unexpected API response structure')
+    }
+
+    // Validate each result
+    const validated = results.map((result: unknown) => {
+      const validationResult = MeteoSwissResponseSchema.safeParse(result)
       if (!validationResult.success) {
+        console.error('Invalid weather data:', validationResult.error)
+        console.error('Actual response structure:', JSON.stringify(result, null, 2))
         throw new Error('Invalid weather data format from MeteoSwiss API')
       }
-      return [validationResult.data]
-    }
+      return validationResult.data
+    })
+    return validated
   } catch (error) {
     console.error('Failed to fetch weather data from MeteoSwiss API:', error)
     throw error
