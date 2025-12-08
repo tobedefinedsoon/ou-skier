@@ -16,8 +16,6 @@ export function ResortCard({
   resort: ScoredResort
   index: number
 }) {
-  const medals = ['🥇', '🥈', '🥉']
-
   return (
     <Link href={`/resorts/${resort.id}`}>
       <Card
@@ -36,17 +34,6 @@ export function ResortCard({
           }}
         >
           <div style={{ flex: 1 }}>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                marginBottom: '0.5rem',
-              }}
-            >
-              <span style={{ fontSize: '1.5rem' }}>{medals[index]}</span>
-              <Badge label={resort.region} variant="primary" />
-            </div>
             <h3
               style={{
                 margin: '0 0 0.5rem 0',
@@ -56,9 +43,18 @@ export function ResortCard({
             >
               {resort.name}
             </h3>
-            <p style={{ margin: '0.25rem 0', fontSize: '0.875rem', color: '#666' }}>
-              📍 Altitude: {resort.elevation}m
-            </p>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                fontSize: '0.875rem',
+                color: '#666',
+              }}
+            >
+              <Badge label={resort.region} variant="primary" />
+              <span>📍 {resort.elevation}m</span>
+            </div>
           </div>
           <ScoreIndicator score={resort.score} size="large" />
         </div>
@@ -91,7 +87,7 @@ export function ResortCard({
                 marginBottom: '0.25rem',
               }}
             >
-              Neige prévue
+              ❄️
             </span>
             <span
               style={{
@@ -116,7 +112,7 @@ export function ResortCard({
                 marginBottom: '0.25rem',
               }}
             >
-              Profondeur
+              🏔️
             </span>
             <span
               style={{
@@ -141,7 +137,7 @@ export function ResortCard({
                 marginBottom: '0.25rem',
               }}
             >
-              Temp. moy
+              🌡️
             </span>
             <span
               style={{
@@ -166,7 +162,7 @@ export function ResortCard({
                 marginBottom: '0.25rem',
               }}
             >
-              Pistes ouv.
+              ⛷️
             </span>
             <span
               style={{
