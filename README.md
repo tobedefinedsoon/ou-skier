@@ -47,12 +47,11 @@ Chaque station de ski reçoit un **score de 0 à 100** basé sur 7 facteurs pond
 | Facteur | Poids | Explication |
 |---------|-------|-------------|
 | **Neige récente (48h)** | 25% | Fraîche poudreuse = meilleures conditions |
-| **Profondeur de neige** | 20% | Base solide = sécurité et longévité |
-| **Prévisions (5j)** | 15% | Neige à venir = conditions à venir |
+| **Profondeur de neige** | 15% | Base solide = sécurité et longévité |
 | **Pistes ouvertes** | 20% | Terrain disponible pour skier |
 | **Vent** | 10% | Faible vent = meilleures conditions (inverse) |
 | **Température** | 5% | Optimal -10°C à -2°C (courbe Gaussienne) |
-| **Ensoleillement** | 5% | Beau temps = meilleure expérience |
+| **Ensoleillement** | 25% | Beau temps = meilleure expérience |
 
 ## 🏗️ Architecture & Décisions Techniques
 
