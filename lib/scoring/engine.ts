@@ -1,8 +1,10 @@
 import type { Resort } from '@/lib/resorts/schemas'
 import type { MeteoSwissResponse } from '@/lib/weather/schemas'
 import type { ScoredResort, ScoreBreakdown } from '@/lib/resorts/types'
+import type { MultiDayScoredResort, DayScore, DayRankings } from './types'
 import { getOpenPistePercentage } from '@/lib/resorts/data'
-import { extractWeatherMetrics } from '@/lib/weather/metrics'
+import { extractWeatherMetrics, extractDayMetrics } from '@/lib/weather/metrics'
+import type { WeatherMetrics } from '@/lib/weather/types'
 
 // Scoring weights (must sum to 100)
 const WEIGHTS = {
@@ -16,22 +18,20 @@ const WEIGHTS = {
 }
 
 /**
- * Calculate ski resort score (0-100)
- * Combines weather, snow, and piste data into a single ranking metric
+ * Core scoring logic - calculates score from metrics
+ * Extracted for reuse in both aggregate and day-specific scoring
  */
-export function calculateResortScore(
+function calculateScoreFromMetrics(
+  metrics: WeatherMetrics,
   resort: Resort,
-  weatherData: MeteoSwissResponse
-): ScoredResort {
-  const metrics = extractWeatherMetrics(weatherData)
+  dailySnowfallSum: number[]
+): { score: number; breakdown: ScoreBreakdown } {
   const openPercentage = getOpenPistePercentage(resort)
 
   // Calculate individual factor scores (0-100)
   const recentSnowfallScore = calculateSnowfallScore(metrics.snowfall48h)
   const snowDepthScore = calculateSnowDepthScore(metrics.snowDepth)
-  const forecastSnowfallScore = calculateForecastSnowfallScore(
-    weatherData.daily.snowfall_sum
-  )
+  const forecastSnowfallScore = calculateForecastSnowfallScore(dailySnowfallSum)
   const pisteScore = openPercentage
   const windScore = calculateWindScore(metrics.windSpeedAvg)
   const temperatureScore = calculateTemperatureScore(metrics.temperatureAvg)
@@ -60,8 +60,29 @@ export function calculateResortScore(
   )
 
   return {
-    ...resort,
     score: Math.min(100, Math.max(0, totalScore)), // Clamp to 0-100
+    breakdown,
+  }
+}
+
+/**
+ * Calculate ski resort score (0-100)
+ * Combines weather, snow, and piste data into a single ranking metric
+ */
+export function calculateResortScore(
+  resort: Resort,
+  weatherData: MeteoSwissResponse
+): ScoredResort {
+  const metrics = extractWeatherMetrics(weatherData)
+  const { score, breakdown } = calculateScoreFromMetrics(
+    metrics,
+    resort,
+    weatherData.daily.snowfall_sum
+  )
+
+  return {
+    ...resort,
+    score,
     rank: 0, // Set by caller when sorting
     weather: weatherData,
     breakdown,
@@ -166,4 +187,69 @@ export function getTopResorts(
   count: number = 3
 ): ScoredResort[] {
   return scoredResorts.slice(0, count)
+}
+
+/**
+ * Calculate scores for all 5 days for a single resort
+ * Pre-calculates all daily scores to enable fast day switching
+ */
+export function calculateResortScoresForAllDays(
+  resort: Resort,
+  weatherData: MeteoSwissResponse
+): MultiDayScoredResort {
+  const dayScores: DayScore[] = []
+
+  // Calculate score for each of the 5 days
+  for (let day = 0; day < 5; day++) {
+    const metrics = extractDayMetrics(weatherData, day)
+    const { score, breakdown } = calculateScoreFromMetrics(
+      metrics,
+      resort,
+      [weatherData.daily.snowfall_sum[day]]
+    )
+
+    dayScores.push({
+      day,
+      date: weatherData.daily.time[day],
+      score,
+      breakdown,
+    })
+  }
+
+  return {
+    ...resort,
+    dayScores,
+    weather: weatherData,
+  }
+}
+
+/**
+ * Score all resorts for a specific day and return sorted rankings
+ * Filters pre-calculated scores by day index and re-sorts
+ */
+export function scoreResortsForDay(
+  multiDayResorts: MultiDayScoredResort[],
+  dayIndex: number
+): DayRankings {
+  // Extract each resort's score for the selected day
+  const resortsForDay: ScoredResort[] = multiDayResorts.map(resort => {
+    const dayScore = resort.dayScores[dayIndex]
+    return {
+      ...resort,
+      score: dayScore.score,
+      breakdown: dayScore.breakdown,
+      rank: 0,  // Will be set after sorting
+    }
+  })
+
+  // Sort by score descending and assign ranks
+  const sorted = resortsForDay
+    .sort((a, b) => b.score - a.score)
+    .map((resort, index) => ({ ...resort, rank: index + 1 }))
+
+  return {
+    day: dayIndex,
+    date: multiDayResorts[0].dayScores[dayIndex].date,
+    resorts: sorted,
+  }
 }

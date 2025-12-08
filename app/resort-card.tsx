@@ -91,7 +91,7 @@ export function ResortCard({
                 marginBottom: '0.25rem',
               }}
             >
-              Neige 48h
+              Neige prévue
             </span>
             <span
               style={{
@@ -101,7 +101,7 @@ export function ResortCard({
                 fontVariantNumeric: 'tabular-nums',
               }}
             >
-              {resort.breakdown.recentSnowfall.toFixed(0)} cm
+              {Math.round(resort.weather.hourly.snowfall.slice(0, 24).reduce((a, b) => a + b, 0))} cm
             </span>
           </div>
           <div>

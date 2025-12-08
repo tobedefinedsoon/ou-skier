@@ -44,3 +44,39 @@ export function extractWeatherMetrics(data: MeteoSwissResponse): WeatherMetrics 
     freezingLevelHeight,
   }
 }
+
+/**
+ * Extract weather metrics for a specific day (0-4)
+ * Used for calculating day-specific scores
+ */
+export function extractDayMetrics(
+  data: MeteoSwissResponse,
+  dayIndex: number
+): WeatherMetrics {
+  // Hourly data: 120 hours total (5 days × 24 hours), 24 hours per day
+  const hourStart = dayIndex * 24
+  const hourEnd = hourStart + 24
+
+  // Extract 24-hour window for this specific day
+  const dayHourlySnowfall = data.hourly.snowfall.slice(hourStart, hourEnd)
+  const dayHourlyTemp = data.hourly.temperature_2m.slice(hourStart, hourEnd)
+  const dayHourlyWind = data.hourly.windspeed_10m.slice(hourStart, hourEnd)
+
+  // Daily aggregates for this specific day
+  const daySnowDepth = data.hourly.snow_depth[hourStart] || 0
+  const daySnowfall = data.daily.snowfall_sum[dayIndex] || 0
+  const daySunshine = data.daily.sunshine_duration[dayIndex] / 3600 // Convert seconds to hours
+
+  // Helper function to calculate average
+  const average = (arr: number[]) =>
+    arr.length > 0 ? arr.reduce((a, b) => a + b, 0) / arr.length : 0
+
+  return {
+    snowfall48h: daySnowfall,  // Use day's forecast snowfall
+    snowDepth: daySnowDepth,
+    temperatureAvg: average(dayHourlyTemp),
+    windSpeedAvg: average(dayHourlyWind),
+    sunshineHours5d: daySunshine,  // Just this day's sunshine
+    freezingLevelHeight: dayHourlyTemp[0] || 0,
+  }
+}

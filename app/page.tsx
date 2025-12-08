@@ -1,14 +1,16 @@
-'use cache'
-
-import { cacheLife } from 'next/cache'
 import Link from 'next/link'
 import { getResorts } from '@/lib/resorts/data'
 import { fetchWeatherForResorts } from '@/lib/weather/client'
-import { scoreResorts, getTopResorts } from '@/lib/scoring/engine'
+import {
+  calculateResortScoresForAllDays,
+  scoreResortsForDay
+} from '@/lib/scoring/engine'
+import { formatDayLabel } from '@/lib/utils/date'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { ScoreIndicator } from '@/components/ui/ScoreIndicator'
 import { ResortCard } from './resort-card'
+import { DaySelector } from '@/components/DaySelector'
 
 export const metadata = {
   title: 'Où Skier! - Top 3 Stations de Ski Suisses',
@@ -16,10 +18,15 @@ export const metadata = {
 }
 
 /**
- * Homepage - displays top 3 ski resorts with scores
+ * Homepage - displays top 3 ski resorts with scores for selected day
  */
-export default async function HomePage() {
-  cacheLife('hours') // 1-hour stale, 15-min revalidate
+export default async function HomePage({
+  searchParams
+}: {
+  searchParams: Promise<{ day?: string }>
+}) {
+  const params = await searchParams
+  const selectedDay = Math.max(0, Math.min(4, parseInt(params.day || '0')))
 
   // Fetch all resorts
   const resorts = await getResorts()
@@ -27,14 +34,30 @@ export default async function HomePage() {
   // Fetch weather data for all resorts (batched in single API call)
   const weatherDataArray = await fetchWeatherForResorts(resorts)
 
-  // Score all resorts
-  const allScored = scoreResorts(resorts, weatherDataArray)
+  // Pre-calculate ALL day scores for ALL resorts
+  const multiDayResorts = resorts.map((resort, index) =>
+    calculateResortScoresForAllDays(resort, weatherDataArray[index])
+  )
 
-  // Get top 3
-  const top3 = getTopResorts(allScored, 3)
+  // Get rankings for selected day
+  const dayRankings = scoreResortsForDay(multiDayResorts, selectedDay)
+  const top3 = dayRankings.resorts.slice(0, 3)
+
+  // Prepare day labels for selector
+  const dayLabels = multiDayResorts[0].dayScores.map(ds => ({
+    day: ds.day,
+    date: ds.date,
+    label: formatDayLabel(ds.date, ds.day),
+  }))
 
   return (
     <div className="container">
+      {/* Day Selector */}
+      <DaySelector
+        currentDay={selectedDay}
+        dayLabels={dayLabels}
+      />
+
       {/* Top 3 Section */}
       <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
         <h2
@@ -47,7 +70,7 @@ export default async function HomePage() {
             letterSpacing: '-0.01em',
           }}
         >
-          🏔️ Meilleures Stations des 5 Prochains Jours
+          🏔️ Meilleures Stations - {dayLabels[selectedDay].label}
         </h2>
 
         <div
@@ -75,7 +98,7 @@ export default async function HomePage() {
             letterSpacing: '-0.01em',
           }}
         >
-          Toutes les Stations ({allScored.length})
+          Toutes les Stations ({dayRankings.resorts.length})
         </h2>
 
         <div
@@ -85,7 +108,7 @@ export default async function HomePage() {
             gap: 'var(--spacing-lg)',
           }}
         >
-          {allScored.map((resort) => (
+          {dayRankings.resorts.map((resort) => (
             <Link key={resort.id} href={`/resorts/${resort.id}`}>
               <Card
                 as="article"
