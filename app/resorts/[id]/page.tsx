@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getResorts, getResortById, getOpenPistePercentage } from '@/lib/resorts/data'
 import { fetchWeatherForResorts } from '@/lib/weather/client'
+import type { MeteoSwissResponse } from '@/lib/weather/schemas'
 import { calculateResortScore } from '@/lib/scoring/engine'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
@@ -20,6 +21,24 @@ export async function generateStaticParams() {
   return resorts.map((resort) => ({
     id: resort.id,
   }))
+}
+
+// Cache all weather data globally to avoid re-fetching for each resort
+let cachedWeatherData: Map<string, MeteoSwissResponse> | null = null
+
+async function getCachedWeatherData() {
+  if (cachedWeatherData) {
+    return cachedWeatherData
+  }
+
+  const resorts = await getResorts()
+  const weatherDataArray = await fetchWeatherForResorts(resorts)
+
+  cachedWeatherData = new Map(
+    resorts.map((resort, index) => [resort.id, weatherDataArray[index]])
+  )
+
+  return cachedWeatherData
 }
 
 /**
@@ -40,13 +59,12 @@ export default async function ResortPage({
     notFound()
   }
 
-  // Fetch weather data
-  const weatherDataArray = await fetchWeatherForResorts([resort])
-  if (weatherDataArray.length === 0) {
+  // Get weather data from cache (batched fetch during generateStaticParams)
+  const weatherDataMap = await getCachedWeatherData()
+  const weatherData = weatherDataMap.get(id)
+  if (!weatherData) {
     throw new Error('Failed to fetch weather data')
   }
-
-  const weatherData = weatherDataArray[0]
   const scored = calculateResortScore(resort, weatherData)
   const openPercentage = getOpenPistePercentage(resort)
 
