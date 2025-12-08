@@ -151,7 +151,7 @@ export function ResortCard({
                 fontVariantNumeric: 'tabular-nums',
               }}
             >
-              {resort.breakdown.temperature.toFixed(1)}°C
+              {(resort.weather.hourly.temperature_2m.slice(0, 24).reduce((a, b) => a + b, 0) / 24).toFixed(1)}°C
             </span>
           </div>
           <div>
