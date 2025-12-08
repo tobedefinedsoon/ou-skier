@@ -2,7 +2,7 @@ import type { Resort } from '@/lib/resorts/schemas'
 import type { MeteoSwissResponse } from '@/lib/weather/schemas'
 import type { ScoredResort, ScoreBreakdown } from '@/lib/resorts/types'
 import { getOpenPistePercentage } from '@/lib/resorts/data'
-import { extractWeatherMetrics } from '@/lib/weather/client'
+import { extractWeatherMetrics } from '@/lib/weather/metrics'
 
 // Scoring weights (must sum to 100)
 const WEIGHTS = {

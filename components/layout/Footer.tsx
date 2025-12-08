@@ -1,8 +1,16 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
 /**
  * Footer component
  */
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const [currentYear, setCurrentYear] = useState<number>(0)
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear())
+  }, [])
 
   return (
     <footer
