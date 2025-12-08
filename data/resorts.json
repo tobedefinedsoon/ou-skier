@@ -56,6 +56,146 @@
     }
   },
   {
+    "id": "aletsch-arena",
+    "name": "Aletsch Arena",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.3577,
+      "lon": 8.0474
+    },
+    "elevation": 1845,
+    "pisteInfo": {
+      "total": 104,
+      "open": 90
+    }
+  },
+  {
+    "id": "nendaz",
+    "name": "Nendaz",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.1853,
+      "lon": 7.2927
+    },
+    "elevation": 1400,
+    "pisteInfo": {
+      "total": 70,
+      "open": 60
+    }
+  },
+  {
+    "id": "champery",
+    "name": "Champéry",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.1762,
+      "lon": 6.8701
+    },
+    "elevation": 1050,
+    "pisteInfo": {
+      "total": 165,
+      "open": 140
+    }
+  },
+  {
+    "id": "anzere",
+    "name": "Anzère",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.2960,
+      "lon": 7.3980
+    },
+    "elevation": 1500,
+    "pisteInfo": {
+      "total": 58,
+      "open": 50
+    }
+  },
+  {
+    "id": "leukerbad",
+    "name": "Leukerbad",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.3800,
+      "lon": 7.6288
+    },
+    "elevation": 1411,
+    "pisteInfo": {
+      "total": 55,
+      "open": 47
+    }
+  },
+  {
+    "id": "thyon",
+    "name": "Thyon 2000",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.1822,
+      "lon": 7.3725
+    },
+    "elevation": 1600,
+    "pisteInfo": {
+      "total": 55,
+      "open": 48
+    }
+  },
+  {
+    "id": "la-tzoumaz",
+    "name": "La Tzoumaz",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.1451,
+      "lon": 7.2331
+    },
+    "elevation": 1500,
+    "pisteInfo": {
+      "total": 40,
+      "open": 35
+    }
+  },
+  {
+    "id": "veysonnaz",
+    "name": "Veysonnaz",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.1960,
+      "lon": 7.3403
+    },
+    "elevation": 1350,
+    "pisteInfo": {
+      "total": 45,
+      "open": 40
+    }
+  },
+  {
+    "id": "morgins",
+    "name": "Morgins",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.2382,
+      "lon": 6.8519
+    },
+    "elevation": 1400,
+    "pisteInfo": {
+      "total": 50,
+      "open": 43
+    }
+  },
+  {
+    "id": "torgon",
+    "name": "Torgon",
+    "region": "Valais",
+    "coordinates": {
+      "lat": 46.3203,
+      "lon": 6.8764
+    },
+    "elevation": 1085,
+    "pisteInfo": {
+      "total": 35,
+      "open": 30
+    }
+  },
+  {
     "id": "villars",
     "name": "Villars-sur-Ollon",
     "region": "Vaud",
@@ -70,6 +210,34 @@
     }
   },
   {
+    "id": "gryon",
+    "name": "Gryon",
+    "region": "Vaud",
+    "coordinates": {
+      "lat": 46.2778,
+      "lon": 7.0676
+    },
+    "elevation": 1224,
+    "pisteInfo": {
+      "total": 60,
+      "open": 52
+    }
+  },
+  {
+    "id": "les-mosses",
+    "name": "Les Mosses",
+    "region": "Vaud",
+    "coordinates": {
+      "lat": 46.3984,
+      "lon": 7.1028
+    },
+    "elevation": 1379,
+    "pisteInfo": {
+      "total": 40,
+      "open": 35
+    }
+  },
+  {
     "id": "les-diablerets",
     "name": "Les Diablerets",
     "region": "Vaud",
@@ -81,6 +249,48 @@
     "pisteInfo": {
       "total": 77,
       "open": 60
+    }
+  },
+  {
+    "id": "chateau-d-oex",
+    "name": "Château-d'Oex",
+    "region": "Vaud",
+    "coordinates": {
+      "lat": 46.4746,
+      "lon": 7.1316
+    },
+    "elevation": 1215,
+    "pisteInfo": {
+      "total": 30,
+      "open": 26
+    }
+  },
+  {
+    "id": "rougemont",
+    "name": "Rougemont",
+    "region": "Vaud",
+    "coordinates": {
+      "lat": 46.4881,
+      "lon": 7.2066
+    },
+    "elevation": 992,
+    "pisteInfo": {
+      "total": 58,
+      "open": 50
+    }
+  },
+  {
+    "id": "glacier-3000",
+    "name": "Glacier 3000",
+    "region": "Vaud",
+    "coordinates": {
+      "lat": 46.3536,
+      "lon": 7.2055
+    },
+    "elevation": 1546,
+    "pisteInfo": {
+      "total": 30,
+      "open": 27
     }
   },
   {
@@ -126,6 +336,48 @@
     }
   },
   {
+    "id": "murren",
+    "name": "Mürren",
+    "region": "Bern",
+    "coordinates": {
+      "lat": 46.5594,
+      "lon": 7.8928
+    },
+    "elevation": 796,
+    "pisteInfo": {
+      "total": 52,
+      "open": 45
+    }
+  },
+  {
+    "id": "gstaad",
+    "name": "Gstaad",
+    "region": "Bern",
+    "coordinates": {
+      "lat": 46.4718,
+      "lon": 7.2866
+    },
+    "elevation": 1050,
+    "pisteInfo": {
+      "total": 220,
+      "open": 190
+    }
+  },
+  {
+    "id": "lenk",
+    "name": "Lenk",
+    "region": "Bern",
+    "coordinates": {
+      "lat": 46.4600,
+      "lon": 7.4400
+    },
+    "elevation": 1260,
+    "pisteInfo": {
+      "total": 86,
+      "open": 75
+    }
+  },
+  {
     "id": "adelboden",
     "name": "Adelboden",
     "region": "Bern",
@@ -137,6 +389,34 @@
     "pisteInfo": {
       "total": 203,
       "open": 165
+    }
+  },
+  {
+    "id": "kandersteg",
+    "name": "Kandersteg",
+    "region": "Bern",
+    "coordinates": {
+      "lat": 46.4958,
+      "lon": 7.6732
+    },
+    "elevation": 1200,
+    "pisteInfo": {
+      "total": 14,
+      "open": 12
+    }
+  },
+  {
+    "id": "meiringen-hasliberg",
+    "name": "Meiringen-Hasliberg",
+    "region": "Bern",
+    "coordinates": {
+      "lat": 46.7252,
+      "lon": 8.1872
+    },
+    "elevation": 1065,
+    "pisteInfo": {
+      "total": 60,
+      "open": 52
     }
   }
 ]
