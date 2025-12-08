@@ -61,7 +61,7 @@ export function Header() {
               margin: 0,
             }}
           >
-            Classement des meilleures stations de ski suisses
+            Comparez, choisissez, skiez
           </p>
         </div>
       </div>
