@@ -27,7 +27,7 @@ This is the complete production-ready bootstrap of the "Où Skier!" application 
 
 ### 4. Business Logic - Scoring Engine
 - ✅ `lib/scoring/engine.ts` - Weighted scoring algorithm
-  - 7 factors: recent snowfall (25%), snow depth (20%), forecast (15%), pistes (20%), wind (10%), temperature (5%), sunshine (5%)
+  - 6 factors: recent snowfall (25%), snow depth (15%), pistes (20%), wind (10%), temperature (5%), sunshine (25%)
   - Normalization functions for each factor
   - Gaussian curve for temperature optimization (-6°C optimal)
 

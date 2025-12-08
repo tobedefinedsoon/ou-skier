@@ -8,13 +8,13 @@ import type { WeatherMetrics } from '@/lib/weather/types'
 
 // Scoring weights (must sum to 100)
 const WEIGHTS = {
-  recentSnowfall: 0.25,    // 25%
-  snowDepth: 0.2,          // 20%
-  forecastSnowfall: 0.15,  // 15%
-  pisteOpenings: 0.2,      // 20%
-  wind: 0.1,               // 10%
-  temperature: 0.05,       // 5%
-  sunshine: 0.05,          // 5%
+  recentSnowfall: 0.25,    // 25% - Nouvelle neige 2j avant
+  snowDepth: 0.15,         // 15% - Profondeur de neige
+  forecastSnowfall: 0,     // 0%  - Not used in daily scoring
+  pisteOpenings: 0.2,      // 20% - Pistes ouvertes
+  wind: 0.1,               // 10% - Vent
+  temperature: 0.05,       // 5%  - Températures
+  sunshine: 0.25,          // 25% - Soleil
 }
 
 /**
