@@ -1,11 +1,21 @@
+import Image from 'next/image'
+
 interface BadgeProps {
   label: string
   variant?: 'primary' | 'accent'
   className?: string
 }
 
+// Map region names to icon paths
+const REGION_ICONS: Record<string, string> = {
+  'Vaud': '/regions/vaud.png',
+  'Valais': '/regions/valais.png',
+  'Bern': '/regions/bern.png',
+}
+
 /**
- * Glassmorphic Badge component for labels (regions, status)
+ * Badge component for labels (regions, status)
+ * Displays coat of arms icons for Swiss regions, or glassmorphic badge for other labels
  * Variants: primary (Glacier Blue tint), accent (Ice Cyan tint)
  */
 export function Badge({
@@ -13,6 +23,27 @@ export function Badge({
   variant = 'primary',
   className = '',
 }: BadgeProps) {
+  const iconPath = REGION_ICONS[label]
+
+  // If it's a region with an icon, just show the icon
+  if (iconPath) {
+    return (
+      <Image
+        src={iconPath}
+        alt={`${label} coat of arms`}
+        width={40}
+        height={40}
+        style={{
+          borderRadius: '8px',
+          objectFit: 'contain',
+          display: 'block',
+        }}
+        className={className}
+      />
+    )
+  }
+
+  // Otherwise show the regular glassmorphic badge
   const styles = variant === 'primary'
     ? {
         background: 'rgba(74, 144, 226, 0.12)',
