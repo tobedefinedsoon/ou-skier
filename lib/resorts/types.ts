@@ -1,5 +1,5 @@
 import type { Resort } from './schemas'
-import type { ProcessedWeather } from '@/lib/weather/types'
+import type { MeteoSwissResponse } from '@/lib/weather/schemas'
 
 export type { Resort }
 
@@ -7,7 +7,7 @@ export type { Resort }
 export interface ScoredResort extends Resort {
   score: number
   rank: number
-  weather: ProcessedWeather
+  weather: MeteoSwissResponse
   breakdown: ScoreBreakdown
 }
 
