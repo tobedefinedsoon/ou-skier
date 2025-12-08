@@ -4,13 +4,13 @@ import { Footer } from '@/components/layout/Footer'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Où Skier! - Classement des meilleures stations de ski suisses',
+  title: 'Où Skier? - Classement des meilleures stations de ski suisses',
   description:
     'Découvrez les meilleures stations de ski suisses pour les prochains jours basé sur les conditions météorologiques, la neige et l\'ouverture des pistes.',
   keywords: ['ski', 'suisse', 'valais', 'vaud', 'bern', 'neige', 'météo'],
-  authors: [{ name: 'Où Skier!' }],
+  authors: [{ name: 'Où Skier?' }],
   openGraph: {
-    title: 'Où Skier! - Classement des meilleures stations de ski suisses',
+    title: 'Où Skier? - Classement des meilleures stations de ski suisses',
     description:
       'Découvrez les meilleures stations de ski suisses pour les prochains jours.',
     type: 'website',

@@ -12,7 +12,7 @@ import { Badge } from '@/components/ui/Badge'
 import { ScoreIndicator } from '@/components/ui/ScoreIndicator'
 
 export const metadata = {
-  title: 'Détails Station de Ski - Où Skier!',
+  title: 'Détails Station de Ski - Où Skier?',
   description: 'Détails complets pour une station de ski suisse',
 }
 

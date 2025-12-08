@@ -50,7 +50,7 @@ export function Header() {
                 }
               }}
             >
-              ❄️ Où Skier!
+              ❄️ Où Skier?
             </h1>
           </Link>
           <p

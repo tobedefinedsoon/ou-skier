@@ -38,7 +38,7 @@ export function Footer() {
               À propos
             </h3>
             <p style={{ fontSize: '0.875rem', lineHeight: '1.6' }}>
-              Où Skier! classe les meilleures stations de ski suisses en
+              Où Skier? classe les meilleures stations de ski suisses en
               fonction des conditions météorologiques et des données de neige.
             </p>
           </div>
@@ -116,7 +116,7 @@ export function Footer() {
             margin: 0,
           }}
         >
-          © {currentYear} Où Skier! - Classement des stations de ski suisses |
+          © {currentYear} Où Skier? - Classement des stations de ski suisses |
           Données météorologiques: Open-Meteo / MeteoSwiss
         </p>
       </div>

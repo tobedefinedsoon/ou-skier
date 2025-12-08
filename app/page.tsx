@@ -13,7 +13,7 @@ import { ResortCard } from './resort-card'
 import { DaySelector } from '@/components/DaySelector'
 
 export const metadata = {
-  title: 'Où Skier! - Top 3 Stations de Ski Suisses',
+  title: 'Où Skier? - Top 3 Stations de Ski Suisses',
   description: 'Les 3 meilleures stations de ski suisses pour les prochains jours',
 }
 
@@ -42,6 +42,7 @@ export default async function HomePage({
   // Get rankings for selected day
   const dayRankings = scoreResortsForDay(multiDayResorts, selectedDay)
   const top3 = dayRankings.resorts.slice(0, 3)
+  const otherResorts = dayRankings.resorts.slice(3)
 
   // Prepare day labels for selector
   const dayLabels = multiDayResorts[0].dayScores.map(ds => ({
@@ -72,20 +73,6 @@ export default async function HomePage({
         dayLabels={dayLabels}
       />
 
-      {/* Selected Day Label */}
-      <h2
-        style={{
-          textAlign: 'center',
-          marginBottom: 'var(--spacing-2xl)',
-          fontSize: '1.5rem',
-          fontWeight: '600',
-          color: 'var(--glacier-blue-primary)',
-          letterSpacing: '-0.01em',
-        }}
-      >
-        {dayLabels[selectedDay].label}
-      </h2>
-
       {/* Top 3 Section */}
       <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
 
@@ -114,7 +101,7 @@ export default async function HomePage({
             letterSpacing: '-0.01em',
           }}
         >
-          Toutes les Stations ({dayRankings.resorts.length})
+          Autres Stations ({otherResorts.length})
         </h2>
 
         <div
@@ -124,7 +111,7 @@ export default async function HomePage({
             gap: 'var(--spacing-lg)',
           }}
         >
-          {dayRankings.resorts.map((resort) => (
+          {otherResorts.map((resort) => (
             <Link key={resort.id} href={`/resorts/${resort.id}`}>
               <Card
                 as="article"
