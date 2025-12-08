@@ -154,7 +154,7 @@ export default async function ResortPage({
                 <strong>Moyenne:</strong> {scored.breakdown.temperature.toFixed(1)}°C
               </p>
               <p style={{ margin: '0.5rem 0' }}>
-                <strong>Apparente:</strong> {(hourly.apparent_temperature[0] || 0).toFixed(1)}°C
+                <strong>Apparente:</strong> {(hourly.apparent_temperature?.[0] || 0).toFixed(1)}°C
               </p>
             </div>
           </Card>
