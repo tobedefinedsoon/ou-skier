@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { SnowfallOverlay } from '@/components/SnowfallOverlay'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default function RootLayout({
           minHeight: '100vh',
         }}
       >
+        <SnowfallOverlay />
         <Header />
         <main
           style={{
