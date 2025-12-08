@@ -137,10 +137,6 @@ ou-skier/
 - **Styling**: CSS vanilla
 - **UI**: Composants custom
 
-## 📝 Licence
-
-MIT - Libre d'utilisation.
-
 ---
 
 Construit avec ❄️ pour les amoureux du ski suisse.
