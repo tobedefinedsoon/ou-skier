@@ -52,26 +52,42 @@ export default async function HomePage({
 
   return (
     <div className="container">
+      {/* Title */}
+      <h1
+        style={{
+          textAlign: 'center',
+          marginBottom: 'var(--spacing-lg)',
+          fontSize: '2.5rem',
+          fontWeight: '700',
+          color: 'var(--charcoal)',
+          letterSpacing: '-0.02em',
+        }}
+      >
+        🏔️ Les meilleures stations pour
+      </h1>
+
       {/* Day Selector */}
       <DaySelector
         currentDay={selectedDay}
         dayLabels={dayLabels}
       />
 
+      {/* Selected Day Label */}
+      <h2
+        style={{
+          textAlign: 'center',
+          marginBottom: 'var(--spacing-2xl)',
+          fontSize: '1.5rem',
+          fontWeight: '600',
+          color: 'var(--glacier-blue-primary)',
+          letterSpacing: '-0.01em',
+        }}
+      >
+        {dayLabels[selectedDay].label}
+      </h2>
+
       {/* Top 3 Section */}
       <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
-        <h2
-          style={{
-            textAlign: 'center',
-            marginBottom: 'var(--spacing-2xl)',
-            fontSize: '2rem',
-            fontWeight: '600',
-            color: 'var(--charcoal)',
-            letterSpacing: '-0.01em',
-          }}
-        >
-          🏔️ Meilleures Stations - {dayLabels[selectedDay].label}
-        </h2>
 
         <div
           style={{
