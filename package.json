@@ -4,7 +4,7 @@
   "description": "Où Skier! - Ranking the top 3 Swiss ski resorts for the next few days",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 50123",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

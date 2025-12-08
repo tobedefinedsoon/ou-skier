@@ -5,8 +5,9 @@ interface ScoreIndicatorProps {
 }
 
 /**
- * ScoreIndicator component - displays ski resort score (0-100) with Ice Cyan gradient
+ * ScoreIndicator component - displays ski resort score (0-100) with muted gradient colors
  * Size variants: small (60px), medium (100px), large (150px)
+ * Colors: Soft coral (low), soft amber (medium), soft mint (high)
  */
 export function ScoreIndicator({
   score,
@@ -25,15 +26,19 @@ export function ScoreIndicator({
 
   const { diameter, fontSize } = sizes[size]
 
-  // Color gradient based on score
-  // Low score (0-33): red-ish, Medium (33-66): yellow-ish, High (66-100): green-ish
+  // Muted, sophisticated color gradient based on score
+  // Low score (0-33): soft coral, Medium (33-66): soft amber, High (66-100): soft mint
   let backgroundColor: string
+  let backgroundColorLight: string
   if (normalizedScore < 33) {
-    backgroundColor = '#FF6B6B' // Red
+    backgroundColor = '#FF8A8A' // Soft coral
+    backgroundColorLight = '#FFB0B0'
   } else if (normalizedScore < 66) {
-    backgroundColor = '#FFD93D' // Yellow
+    backgroundColor = '#FFB347' // Soft amber
+    backgroundColorLight = '#FFCB7A'
   } else {
-    backgroundColor = '#6BCB77' // Green
+    backgroundColor = '#66D9A8' // Soft mint
+    backgroundColorLight = '#8FE4BD'
   }
 
   return (
@@ -46,11 +51,16 @@ export function ScoreIndicator({
         width: diameter,
         height: diameter,
         borderRadius: '50%',
-        backgroundColor,
-        color: 'var(--snow-white)',
+        background: `linear-gradient(135deg, ${backgroundColor}, ${backgroundColorLight})`,
+        color: 'white',
         fontWeight: '700',
         fontSize,
-        boxShadow: 'var(--shadow-md)',
+        boxShadow: `
+          0 4px 12px rgba(0, 0, 0, 0.08),
+          inset 0 1px 2px rgba(255, 255, 255, 0.3)
+        `,
+        border: '2px solid rgba(255, 255, 255, 0.2)',
+        fontVariantNumeric: 'tabular-nums',
       }}
       aria-label={`Score: ${normalizedScore} out of 100`}
       role="img"

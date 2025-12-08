@@ -3,15 +3,21 @@
 import Link from 'next/link'
 
 /**
- * Header component with "Où Skier!" branding
+ * Glassmorphic Header component with sticky positioning
  */
 export function Header() {
   return (
     <header
       style={{
-        backgroundColor: 'var(--glacier-blue)',
+        background: 'var(--glass-white)',
+        backdropFilter: 'var(--glass-blur)',
+        WebkitBackdropFilter: 'var(--glass-blur)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
         padding: 'var(--spacing-lg) 0',
-        boxShadow: 'var(--shadow-sm)',
+        boxShadow: 'var(--shadow-glass-md)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 100,
       }}
     >
       <div className="container">
@@ -20,6 +26,7 @@ export function Header() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            gap: 'var(--spacing-lg)',
           }}
         >
           <Link href="/" style={{ textDecoration: 'none' }}>
@@ -27,14 +34,14 @@ export function Header() {
               style={{
                 fontSize: '1.75rem',
                 fontWeight: '700',
-                color: 'var(--snow-white)',
+                color: 'var(--glacier-blue-primary)',
                 margin: 0,
                 cursor: 'pointer',
                 transition: 'opacity var(--transition-base)',
               }}
               onMouseEnter={(e) => {
                 if (e.currentTarget instanceof HTMLElement) {
-                  e.currentTarget.style.opacity = '0.9'
+                  e.currentTarget.style.opacity = '0.8'
                 }
               }}
               onMouseLeave={(e) => {
@@ -48,8 +55,9 @@ export function Header() {
           </Link>
           <p
             style={{
-              color: 'var(--snow-white)',
+              color: 'var(--slate-gray)',
               fontSize: '0.875rem',
+              fontWeight: '500',
               margin: 0,
             }}
           >

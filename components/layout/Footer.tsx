@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 /**
- * Footer component
+ * Glassmorphic Footer component with gradient background
  */
 export function Footer() {
   const [currentYear, setCurrentYear] = useState<number>(0)
@@ -15,10 +15,13 @@ export function Footer() {
   return (
     <footer
       style={{
-        backgroundColor: 'var(--deep-night-blue)',
+        background: 'linear-gradient(180deg, transparent 0%, rgba(26, 35, 50, 0.6) 100%)',
+        backdropFilter: 'var(--glass-blur)',
+        WebkitBackdropFilter: 'var(--glass-blur)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.1)',
         color: 'var(--snow-white)',
-        padding: 'var(--spacing-2xl) 0',
-        marginTop: 'var(--spacing-2xl)',
+        padding: 'var(--spacing-3xl) 0 var(--spacing-xl) 0',
+        marginTop: 'var(--spacing-4xl)',
       }}
     >
       <div className="container">
@@ -56,7 +59,10 @@ export function Footer() {
                   href="https://open-meteo.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: 'var(--ice-cyan)' }}
+                  style={{
+                    color: 'var(--ice-cyan-accent)',
+                    textDecoration: 'none',
+                  }}
                 >
                   Météo: Open-Meteo / MeteoSwiss
                 </a>
@@ -66,7 +72,10 @@ export function Footer() {
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: 'var(--ice-cyan)' }}
+                  style={{
+                    color: 'var(--ice-cyan-accent)',
+                    textDecoration: 'none',
+                  }}
                 >
                   Code source
                 </a>

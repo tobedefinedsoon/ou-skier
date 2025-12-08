@@ -69,55 +69,111 @@ export function ResortCard({
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: 'var(--spacing-md)',
-            padding: 'var(--spacing-md)',
-            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+            padding: 'var(--spacing-lg)',
+            background: 'var(--glass-overlay)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
             borderRadius: 'var(--radius-md)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
             fontSize: '0.875rem',
+            marginTop: 'var(--spacing-md)',
           }}
         >
           <div>
-            <span style={{ color: '#666' }}>Neige 48h:</span>
-            <br />
+            <span
+              style={{
+                color: 'var(--slate-gray)',
+                fontSize: '0.75rem',
+                fontWeight: '500',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                display: 'block',
+                marginBottom: '0.25rem',
+              }}
+            >
+              Neige 48h
+            </span>
             <span
               style={{
                 fontWeight: '600',
-                color: 'var(--deep-night-blue)',
+                color: 'var(--charcoal)',
+                fontSize: '1rem',
+                fontVariantNumeric: 'tabular-nums',
               }}
             >
               {resort.breakdown.recentSnowfall.toFixed(0)} cm
             </span>
           </div>
           <div>
-            <span style={{ color: '#666' }}>Profondeur:</span>
-            <br />
+            <span
+              style={{
+                color: 'var(--slate-gray)',
+                fontSize: '0.75rem',
+                fontWeight: '500',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                display: 'block',
+                marginBottom: '0.25rem',
+              }}
+            >
+              Profondeur
+            </span>
             <span
               style={{
                 fontWeight: '600',
-                color: 'var(--deep-night-blue)',
+                color: 'var(--charcoal)',
+                fontSize: '1rem',
+                fontVariantNumeric: 'tabular-nums',
               }}
             >
               {Math.round(resort.weather.hourly.snow_depth[0])} cm
             </span>
           </div>
           <div>
-            <span style={{ color: '#666' }}>Temp. moy:</span>
-            <br />
+            <span
+              style={{
+                color: 'var(--slate-gray)',
+                fontSize: '0.75rem',
+                fontWeight: '500',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                display: 'block',
+                marginBottom: '0.25rem',
+              }}
+            >
+              Temp. moy
+            </span>
             <span
               style={{
                 fontWeight: '600',
-                color: 'var(--deep-night-blue)',
+                color: 'var(--charcoal)',
+                fontSize: '1rem',
+                fontVariantNumeric: 'tabular-nums',
               }}
             >
               {resort.breakdown.temperature.toFixed(1)}°C
             </span>
           </div>
           <div>
-            <span style={{ color: '#666' }}>Pistes ouvertes:</span>
-            <br />
+            <span
+              style={{
+                color: 'var(--slate-gray)',
+                fontSize: '0.75rem',
+                fontWeight: '500',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                display: 'block',
+                marginBottom: '0.25rem',
+              }}
+            >
+              Pistes ouv.
+            </span>
             <span
               style={{
                 fontWeight: '600',
-                color: 'var(--deep-night-blue)',
+                color: 'var(--charcoal)',
+                fontSize: '1rem',
+                fontVariantNumeric: 'tabular-nums',
               }}
             >
               {Math.round(resort.breakdown.pisteOpenings)}%
@@ -129,7 +185,7 @@ export function ResortCard({
           style={{
             marginTop: 'var(--spacing-md)',
             marginBottom: 0,
-            color: 'var(--glacier-blue)',
+            color: 'var(--glacier-blue-primary)',
             fontWeight: '600',
             fontSize: '0.875rem',
           }}

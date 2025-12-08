@@ -37,16 +37,25 @@ export default async function HomePage() {
     <div className="container">
       {/* Top 3 Section */}
       <section style={{ marginBottom: 'var(--spacing-2xl)' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: 'var(--spacing-xl)' }}>
+        <h2
+          style={{
+            textAlign: 'center',
+            marginBottom: 'var(--spacing-2xl)',
+            fontSize: '2rem',
+            fontWeight: '600',
+            color: 'var(--charcoal)',
+            letterSpacing: '-0.01em',
+          }}
+        >
           🏔️ Meilleures Stations des 5 Prochains Jours
         </h2>
 
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: 'var(--spacing-xl)',
-            marginBottom: 'var(--spacing-2xl)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: 'var(--spacing-2xl)',
+            marginBottom: 'var(--spacing-3xl)',
           }}
         >
           {top3.map((resort, index) => (
@@ -57,15 +66,23 @@ export default async function HomePage() {
 
       {/* All Resorts Section */}
       <section>
-        <h2 style={{ marginBottom: 'var(--spacing-lg)' }}>
+        <h2
+          style={{
+            marginBottom: 'var(--spacing-lg)',
+            fontSize: '2rem',
+            fontWeight: '600',
+            color: 'var(--charcoal)',
+            letterSpacing: '-0.01em',
+          }}
+        >
           Toutes les Stations ({allScored.length})
         </h2>
 
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: 'var(--spacing-md)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: 'var(--spacing-lg)',
           }}
         >
           {allScored.map((resort) => (

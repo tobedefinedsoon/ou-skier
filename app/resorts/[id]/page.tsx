@@ -78,7 +78,7 @@ export default async function ResortPage({
       <Link
         href="/"
         style={{
-          color: 'var(--glacier-blue)',
+          color: 'var(--glacier-blue-primary)',
           marginBottom: 'var(--spacing-lg)',
           display: 'inline-block',
           textDecoration: 'none',
@@ -219,17 +219,78 @@ export default async function ResortPage({
             <table
               style={{
                 width: '100%',
-                borderCollapse: 'collapse',
+                borderCollapse: 'separate',
+                borderSpacing: '0',
                 fontSize: '0.875rem',
               }}
             >
               <thead>
-                <tr style={{ borderBottom: '2px solid var(--glacier-blue)' }}>
-                  <th style={{ padding: 'var(--spacing-md)', textAlign: 'left' }}>Date</th>
-                  <th style={{ padding: 'var(--spacing-md)', textAlign: 'left' }}>Neige</th>
-                  <th style={{ padding: 'var(--spacing-md)', textAlign: 'left' }}>Temp. max</th>
-                  <th style={{ padding: 'var(--spacing-md)', textAlign: 'left' }}>Temp. min</th>
-                  <th style={{ padding: 'var(--spacing-md)', textAlign: 'left' }}>Soleil</th>
+                <tr style={{ borderBottom: '2px solid rgba(74, 144, 226, 0.2)' }}>
+                  <th
+                    style={{
+                      padding: 'var(--spacing-md)',
+                      textAlign: 'left',
+                      fontWeight: '600',
+                      fontSize: '0.8125rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: 'var(--charcoal)',
+                    }}
+                  >
+                    Date
+                  </th>
+                  <th
+                    style={{
+                      padding: 'var(--spacing-md)',
+                      textAlign: 'left',
+                      fontWeight: '600',
+                      fontSize: '0.8125rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: 'var(--charcoal)',
+                    }}
+                  >
+                    Neige
+                  </th>
+                  <th
+                    style={{
+                      padding: 'var(--spacing-md)',
+                      textAlign: 'left',
+                      fontWeight: '600',
+                      fontSize: '0.8125rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: 'var(--charcoal)',
+                    }}
+                  >
+                    Temp. max
+                  </th>
+                  <th
+                    style={{
+                      padding: 'var(--spacing-md)',
+                      textAlign: 'left',
+                      fontWeight: '600',
+                      fontSize: '0.8125rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: 'var(--charcoal)',
+                    }}
+                  >
+                    Temp. min
+                  </th>
+                  <th
+                    style={{
+                      padding: 'var(--spacing-md)',
+                      textAlign: 'left',
+                      fontWeight: '600',
+                      fontSize: '0.8125rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: 'var(--charcoal)',
+                    }}
+                  >
+                    Soleil
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -237,8 +298,8 @@ export default async function ResortPage({
                   <tr
                     key={idx}
                     style={{
-                      borderBottom: '1px solid var(--frost-gray)',
-                      backgroundColor: idx % 2 === 0 ? 'rgba(255, 255, 255, 0.5)' : 'transparent',
+                      borderBottom: '1px solid rgba(232, 236, 241, 0.3)',
+                      backgroundColor: idx % 2 === 0 ? 'rgba(255, 255, 255, 0.3)' : 'transparent',
                     }}
                   >
                     <td style={{ padding: 'var(--spacing-md)' }}>
@@ -272,7 +333,7 @@ export default async function ResortPage({
 }
 
 /**
- * MetricBox component for score breakdown display
+ * Glassmorphic MetricBox component for score breakdown display
  */
 function MetricBox({
   label,
@@ -284,12 +345,24 @@ function MetricBox({
   unit: string
 }) {
   return (
-    <div>
+    <div
+      style={{
+        padding: 'var(--spacing-lg)',
+        background: 'var(--glass-overlay)',
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
+        borderRadius: 'var(--radius-md)',
+        border: '1px solid rgba(255, 255, 255, 0.2)',
+      }}
+    >
       <p
         style={{
           margin: '0 0 0.5rem 0',
-          fontSize: '0.875rem',
-          color: '#666',
+          fontSize: '0.75rem',
+          fontWeight: '600',
+          textTransform: 'uppercase',
+          letterSpacing: '0.05em',
+          color: 'var(--slate-gray)',
         }}
       >
         {label}
@@ -297,12 +370,22 @@ function MetricBox({
       <p
         style={{
           margin: 0,
-          fontSize: '1.5rem',
+          fontSize: '1.75rem',
           fontWeight: '700',
-          color: 'var(--deep-night-blue)',
+          color: 'var(--charcoal)',
+          fontVariantNumeric: 'tabular-nums',
         }}
       >
-        {value.toFixed(1)} <span style={{ fontSize: '0.875rem' }}>{unit}</span>
+        {value.toFixed(1)}{' '}
+        <span
+          style={{
+            fontSize: '0.875rem',
+            fontWeight: '500',
+            color: 'var(--slate-gray)',
+          }}
+        >
+          {unit}
+        </span>
       </p>
     </div>
   )
